@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { AppContext } from '../../AppContext'
 
 export default function CreateDriver() {
-  const [drivers, setDrivers] = useContext(AppContext)
+  const [drivers] = useContext(AppContext)
 
   console.log(drivers);
   return (

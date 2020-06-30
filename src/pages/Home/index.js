@@ -1,9 +1,8 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { AppContext } from '../../AppContext'
-import api from '../../services/api'
 
 export default function Home() {
-  const [drivers, setDrivers] = useContext(AppContext)
+  const [drivers] = useContext(AppContext)
 
   console.log(drivers);
   return (
