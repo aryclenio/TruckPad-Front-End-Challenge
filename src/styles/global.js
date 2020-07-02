@@ -49,7 +49,7 @@ export default createGlobalStyle`
       border-color:#face48;
       box-shadow: 0 0 0 2px rgba(250, 206, 72, 0.4);
     }
-
   }
+
 
 `;

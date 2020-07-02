@@ -41,6 +41,7 @@ export const SubtitleContainer = styled.div`
 `;
 
 export const ScrollContainer = styled.div`
+    margin-top: 80px;
     font-size: 16px;
     font-weight: bold;
     color: #fff;

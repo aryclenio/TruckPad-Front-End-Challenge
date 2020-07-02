@@ -13,8 +13,8 @@ app.get("/drivers", (req, res) => {
 });
 
 app.post("/drivers", (req, res) => {
-  const { name, phone, birth, cnh, chnType, cpf } = req.body;
-  const driver = { id: uuid(), name, phone, birth, cnh, chnType, cpf };
+  const { name, phone, birth, cnh, cnhType, cpf } = req.body;
+  const driver = { id: uuid(), name, phone, birth, cnh, cnhType, cpf };
   drivers.push(driver);
 
   return res.json(driver);
@@ -22,7 +22,7 @@ app.post("/drivers", (req, res) => {
 
 app.put("/drivers/:id", (req, res) => {
   const { id } = req.params;
-  const { name, phone, birth, cnh, chnType, cpf } = req.body;
+  const { name, phone, birth, cnh, cnhType, cpf } = req.body;
   const driverIndex = drivers.findIndex((driver) => driver.id === id);
 
   if (driverIndex < 0) {
@@ -34,7 +34,7 @@ app.put("/drivers/:id", (req, res) => {
     phone,
     birth,
     cnh,
-    chnType,
+    cnhType,
     cpf
   };
   //Atualiza o valor de project

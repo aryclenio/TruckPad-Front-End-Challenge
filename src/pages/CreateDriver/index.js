@@ -4,6 +4,9 @@ import { Form, Input, Button, Checkbox, Row, Col, Modal } from 'antd';
 import { Container, FormContainer, SessionTitle, ImageContainer } from './styles'
 import MaskedInput from 'react-text-mask'
 import api from '../../services/api'
+import { FaArrowLeft } from "react-icons/fa";
+import { Link } from 'react-router-dom';
+
 
 
 export default function CreateDriver() {
@@ -45,7 +48,10 @@ export default function CreateDriver() {
         {/** <img alt="truck on road" src={truck} />**/}
       </ImageContainer>
       <FormContainer>
-        <SessionTitle>Cadastro de motoristas</SessionTitle>
+        <SessionTitle>
+          <Link to="/"><Button type="primary" icon={<FaArrowLeft />} size={'middle'} /></Link>
+          Cadastro de motoristas
+        </SessionTitle>
 
         <Form
           labelCol={{ span: 4 }}

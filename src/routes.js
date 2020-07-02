@@ -9,7 +9,7 @@ export default function Routes() {
     <Switch>
       <Route path="/" exact component={Home} />
       <Route path="/create" exact component={CreateDriver} />
-      <Route path="/edit" exact component={EditDriver} />
+      <Route path="/edit" component={EditDriver} />
     </Switch>
   );
 }
