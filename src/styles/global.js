@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { darken } from 'polished';
 import 'react-toastify/dist/ReactToastify.css';
 import 'antd/dist/antd.css';
 
@@ -21,7 +22,7 @@ export default createGlobalStyle`
     font: 14px 'Open Sans', sans-serif;
   }
   #root {
-    max-width: 1300px;
+    max-width: 100%;
     margin: 0 auto;
     padding: 0 0 50px;
     background: #fff;
@@ -30,4 +31,25 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
   }
+
+  .ant-btn {
+    border: 0;
+    background-color: #face48 !important;
+    color: #000 !important;
+    font-weight: bold;
+    font-size: 20px;
+    &:hover {
+      background-color: ${darken(0.09, '#face48')} !important;
+      color: #000 !important;
+    }
+  }
+
+  .ant-input {
+    &:hover, &:focus {
+      border-color:#face48;
+      box-shadow: 0 0 0 2px rgba(250, 206, 72, 0.4);
+    }
+
+  }
+
 `;
