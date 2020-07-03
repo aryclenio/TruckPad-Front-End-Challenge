@@ -6,12 +6,13 @@ import MaskedInput from 'react-text-mask'
 import api from '../../services/api'
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import { initialState } from '../../utils/initialState'
 
 
 
 export default function CreateDriver() {
   const [drivers] = useContext(AppContext);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState(initialState);
 
   const ApiSuccess = () => {
     Modal.success({
