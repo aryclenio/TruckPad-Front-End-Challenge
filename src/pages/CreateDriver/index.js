@@ -44,10 +44,10 @@ export default function CreateDriver() {
       formRef.current.setErrors({});
       const schema = Yup.object().shape({
         name: Yup.string().required("Insira um nome válido"),
-        phone: Yup.string().min(15).required("Insira um telefone de 11 digitos."),
-        birth: Yup.string().min(10).required("Insira uma data válida."),
-        cnh: Yup.string().min(11).required("Insira uma CNH válida com 11 digitos."),
-        cpf: Yup.string().min(14).required("Insira um CPF válido com 11 digitos."),
+        phone: Yup.string().min(15, "O telefone precisa ter 11 dígitos.").required("Insira um telefone de 11 digitos."),
+        birth: Yup.string().min(10, "Insira uma data no formato dd/mm/aaaa.").required("Insira uma data válida."),
+        cnh: Yup.string().min(11, "A CNH deve conter 11 dígitos.").required("Insira uma CNH válida com 11 digitos."),
+        cpf: Yup.string().min(14, "O CPF deve conter 11 dígitos.").required("Insira um CPF válido com 11 digitos."),
       });
       await schema.validate(data, {
         abortEarly: false,
