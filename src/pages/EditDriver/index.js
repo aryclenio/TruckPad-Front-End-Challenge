@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef, useEffect } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { AppContext } from '../../AppContext'
 import { Form, Button, Checkbox, Row, Col, Modal } from 'antd';
 import { Container, FormContainer, SessionTitle, ImageContainer } from './styles'
@@ -10,11 +10,6 @@ import { initialState } from '../../utils/initialState'
 
 
 export default function EditDriver(props) {
-  const name = useRef();
-  const phone = useRef();
-  const birth = useRef();
-  const cnh = useRef();
-  const cpf = useRef();
   const [drivers] = useContext(AppContext);
   const [formData, setFormData] = useState(initialState);
 
@@ -24,13 +19,6 @@ export default function EditDriver(props) {
     const id = params.get('id');
     const driver = drivers.filter((driver) => driver.id === id)[0];
     setFormData(driver);
-    if (driver) {
-      name.current.value = driver.name;
-      phone.current.value = driver.phone;
-      birth.current.value = driver.birth;
-      cnh.current.value = driver.cnh;
-      cpf.current.value = driver.cpf;
-    }
   }, [drivers, props.location.search]);
 
 
@@ -62,6 +50,7 @@ export default function EditDriver(props) {
     });
   }
 
+  console.log(formData);
   return (
     <Container>
       <ImageContainer>
@@ -79,24 +68,24 @@ export default function EditDriver(props) {
           layout="horizontal"
           size={'large'}
         >
-          <Form.Item label="Nome" name="name" labelCol={{ span: 24 }} rules={[{ required: true, message: 'Insira seu nome completo' }]}>
-            <input ref={name} className="ant-input ant-input-lg" name="name" onChange={(e) => handleInputChange(e, 'name')} />
+          <Form.Item label="Nome" labelCol={{ span: 24 }} rules={[{ required: true, message: 'Insira seu nome completo' }]}>
+            <input value={formData ? formData.name : ""} className="ant-input ant-input-lg" name="name" onChange={(e) => handleInputChange(e, 'name')} />
           </Form.Item>
 
-          <Form.Item label="Telefone" name="phone" labelCol={{ span: 24 }} rules={[{ required: true, message: 'Insira um telefone válido.' }]}>
-            <InputMask ref={phone} value="432432" name="phone" onChange={(e) => handleInputChange(e, 'phone')} className="ant-input ant-input-lg"
+          <Form.Item label="Telefone" labelCol={{ span: 24 }} rules={[{ required: true, message: 'Insira um telefone válido.' }]}>
+            <InputMask value={formData ? formData.phone : ""} name="phone" onChange={(e) => handleInputChange(e, 'phone')} className="ant-input ant-input-lg"
               mask="(99) 99999-9999" maskPlaceholder=""
             />
           </Form.Item>
 
-          <Form.Item label="Data de Nascimento" name="birth" labelCol={{ span: 24 }} rules={[{ required: true, message: 'Insira uma data válida' }]}>
-            <InputMask ref={birth} name="birth" onChange={(e) => handleInputChange(e, 'birth')} className="ant-input ant-input-lg"
+          <Form.Item label="Data de Nascimento" labelCol={{ span: 24 }} rules={[{ required: true, message: 'Insira uma data válida' }]}>
+            <InputMask value={formData ? formData.birth : ""} name="birth" onChange={(e) => handleInputChange(e, 'birth')} className="ant-input ant-input-lg"
               mask="99/99/9999" maskPlaceholder=""
             />
           </Form.Item>
 
-          <Form.Item label="CNH" name="cnh" labelCol={{ span: 24 }} rules={[{ required: true, max: 11, message: 'Insira os 11 digitos da CNH corretamente.' }]}>
-            <InputMask ref={cnh} name="cnh" onChange={(e) => handleInputChange(e, 'cnh')} className="ant-input ant-input-lg"
+          <Form.Item label="CNH" labelCol={{ span: 24 }} rules={[{ required: true, max: 11, message: 'Insira os 11 digitos da CNH corretamente.' }]}>
+            <InputMask value={formData ? formData.cnh : ""} name="cnh" onChange={(e) => handleInputChange(e, 'cnh')} className="ant-input ant-input-lg"
               mask="99999999999" maskPlaceholder=""
             />
           </Form.Item>
@@ -129,8 +118,8 @@ export default function EditDriver(props) {
               </Col>
             </Row>
           </Form.Item>
-          <Form.Item label="CPF" labelCol={{ span: 24 }} name="cpf" rules={[{ required: true, message: 'Insira um CPF válido.' }]}>
-            <InputMask ref={cpf} name="cpf" onChange={(e) => handleInputChange(e, 'cpf')} className="ant-input ant-input-lg"
+          <Form.Item label="CPF" labelCol={{ span: 24 }} rules={[{ required: true, message: 'Insira um CPF válido.' }]}>
+            <InputMask value={formData ? formData.cpf : ""} name="cpf" onChange={(e) => handleInputChange(e, 'cpf')} className="ant-input ant-input-lg"
               mask="999.999.999-99" maskPlaceholder=""
             />
           </Form.Item>
