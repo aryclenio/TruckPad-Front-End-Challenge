@@ -60,10 +60,10 @@ export default function EditDriver(props) {
       formRef.current.setErrors({});
       const schema = Yup.object().shape({
         name: Yup.string().required("Insira um nome válido"),
-        phone: Yup.string().min(6).required("Insira um telefone de 11 digitos."),
-        birth: Yup.string().required("Insira uma data válida."),
+        phone: Yup.string().min(15).required("Insira um telefone de 11 digitos."),
+        birth: Yup.string().min(10).required("Insira uma data válida."),
         cnh: Yup.string().min(11).required("Insira uma CNH válida com 11 digitos."),
-        cpf: Yup.string().min(11).required("Insira um CPF válido com 11 digitos."),
+        cpf: Yup.string().min(14).required("Insira um CPF válido com 11 digitos."),
       });
       await schema.validate(data, {
         abortEarly: false,
