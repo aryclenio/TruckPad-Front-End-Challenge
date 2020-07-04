@@ -49,6 +49,8 @@ export default createGlobalStyle`
       box-shadow: 0 0 0 2px rgba(250, 206, 72, 0.4);
     }
   }
-
+  .error {
+    color: red;
+  }
 
 `;

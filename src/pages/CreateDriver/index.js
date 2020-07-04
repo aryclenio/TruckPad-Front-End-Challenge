@@ -44,10 +44,10 @@ export default function CreateDriver() {
       formRef.current.setErrors({});
       const schema = Yup.object().shape({
         name: Yup.string().required("Insira um nome válido"),
-        phone: Yup.string().min(6).required("Insira um telefone de 11 digitos."),
-        birth: Yup.string().required("Insira uma data válida."),
+        phone: Yup.string().min(15).required("Insira um telefone de 11 digitos."),
+        birth: Yup.string().min(10).required("Insira uma data válida."),
         cnh: Yup.string().min(11).required("Insira uma CNH válida com 11 digitos."),
-        cpf: Yup.string().min(11).required("Insira um CPF válido com 11 digitos."),
+        cpf: Yup.string().min(14).required("Insira um CPF válido com 11 digitos."),
       });
       await schema.validate(data, {
         abortEarly: false,
@@ -86,25 +86,25 @@ export default function CreateDriver() {
           onSubmit={handleSubmit}
           ref={formRef}
         >
-          <FormAntd.Item label="Nome" required="true" labelCol={{ span: 24 }} >
+          <FormAntd.Item label="Nome" data-testid="name" required="true" labelCol={{ span: 24 }} >
             <Input name="name" onChange={(e) => handleInputChange(e, 'name')} className="ant-input ant-input-lg" />
           </FormAntd.Item>
-          <FormAntd.Item label="Telefone" required="true" labelCol={{ span: 24 }} rules={[{ required: true, message: 'Insira um telefone válido.' }]}>
+          <FormAntd.Item label="Telefone" data-testid="phone" required="true" labelCol={{ span: 24 }} rules={[{ required: true, message: 'Insira um telefone válido.' }]}>
             <InputMask name="phone" onChange={(e) => handleInputChange(e, 'phone')} className="ant-input ant-input-lg"
               mask="(99) 99999-9999" maskPlaceholder=""
             />
           </FormAntd.Item>
-          <FormAntd.Item label="Data de nascimento" required="true" labelCol={{ span: 24 }} rules={[{ required: true, message: 'Insira uma data válida.' }]}>
+          <FormAntd.Item label="Data de nascimento" data-testid="birth" required="true" labelCol={{ span: 24 }} rules={[{ required: true, message: 'Insira uma data válida.' }]}>
             <InputMask name="birth" onChange={(e) => handleInputChange(e, 'birth')} className="ant-input ant-input-lg"
               mask="99/99/9999" maskPlaceholder=""
             />
           </FormAntd.Item>
-          <FormAntd.Item label="CNH" required="true" labelCol={{ span: 24 }} rules={[{ required: true, max: 11, message: 'Insira os 11 digitos da CNH corretamente.' }]}>
+          <FormAntd.Item label="CNH" required="true" data-testid="cnh" labelCol={{ span: 24 }} rules={[{ required: true, max: 11, message: 'Insira os 11 digitos da CNH corretamente.' }]}>
             <InputMask name="cnh" onChange={(e) => handleInputChange(e, 'cnh')} className="ant-input ant-input-lg"
               mask="99999999999" maskPlaceholder=""
             />
           </FormAntd.Item>
-          <FormAntd.Item required="true" label="Tipo de CNH" labelCol={{ span: 24 }} name="cnhType">
+          <FormAntd.Item required="true" data-testid="cnhType" label="Tipo de CNH" labelCol={{ span: 24 }} name="cnhType">
             <Row>
               <Col span={8}>
                 <Checkbox checked={formData ? formData.cnhType.A : 1} value="A" onChange={(e) => handleInputChecked(e)} style={{ lineHeight: '32px' }} >
@@ -133,7 +133,7 @@ export default function CreateDriver() {
               </Col>
             </Row>
           </FormAntd.Item>
-          <FormAntd.Item label="CPF" required="true" labelCol={{ span: 24 }} rules={[{ required: true, message: 'Insira um CPF válido.' }]}>
+          <FormAntd.Item label="CPF" data-testid="cpf" required="true" labelCol={{ span: 24 }} rules={[{ required: true, message: 'Insira um CPF válido.' }]}>
             <InputMask name="cpf" onChange={(e) => handleInputChange(e, 'cpf')} className="ant-input ant-input-lg"
               mask="999.999.999-99" maskPlaceholder=""
             />

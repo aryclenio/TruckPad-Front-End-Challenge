@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  .ant-row {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+  }
   .ant-col {
     display: flex;
     justify-content: center;

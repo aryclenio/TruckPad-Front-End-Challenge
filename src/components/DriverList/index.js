@@ -35,7 +35,7 @@ export default function DriverList() {
         <div className="site-card-wrapper">
           <Row gutter={16}>
             {drivers.length ? drivers.map((driver) => (
-              <Col md={24} lg={8}>
+              <Col md={24} lg={8} key={driver.id}>
                 <Card title={driver.name}
                   extra={driver.active ?
                     <Badge className="site-badge-count-109" count={"Ativo"} style={{ backgroundColor: '#52c41a' }} /> :

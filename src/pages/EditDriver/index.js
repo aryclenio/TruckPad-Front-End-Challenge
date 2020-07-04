@@ -104,27 +104,27 @@ export default function EditDriver(props) {
           onSubmit={handleSubmit}
           ref={formRef}
         >
-          <FormAntd.Item label="Status do motorista" required="true" labelCol={{ span: 24 }}>
+          <FormAntd.Item label="Status do motorista" data-testid="active" required="true" labelCol={{ span: 24 }}>
             <Switch defaultChecked checked={formData ? formData.active : true} onChange={handleActive} checkedChildren="Ativo" unCheckedChildren="Inativo" />
           </FormAntd.Item>
 
-          <FormAntd.Item label="Nome" required="true" labelCol={{ span: 24 }}>
+          <FormAntd.Item label="Nome" data-testid="name" required="true" labelCol={{ span: 24 }}>
             <Input value={formData ? formData.name : ""} className="ant-input ant-input-lg" name="name" onChange={(e) => handleInputChange(e, 'name')} />
           </FormAntd.Item>
 
-          <FormAntd.Item label="Telefone" required="true" labelCol={{ span: 24 }}>
+          <FormAntd.Item label="Telefone" data-testid="phone" required="true" labelCol={{ span: 24 }}>
             <InputMask value={formData ? formData.phone : ""} name="phone" onChange={(e) => handleInputChange(e, 'phone')} className="ant-input ant-input-lg"
               mask="(99) 99999-9999" maskPlaceholder=""
             />
           </FormAntd.Item>
 
-          <FormAntd.Item label="Data de Nascimento" required="true" labelCol={{ span: 24 }} >
+          <FormAntd.Item label="Data de Nascimento" data-testid="birth" required="true" labelCol={{ span: 24 }} >
             <InputMask value={formData ? formData.birth : ""} name="birth" onChange={(e) => handleInputChange(e, 'birth')} className="ant-input ant-input-lg"
               mask="99/99/9999" maskPlaceholder=""
             />
           </FormAntd.Item>
 
-          <FormAntd.Item label="CNH" required="true" labelCol={{ span: 24 }}>
+          <FormAntd.Item label="CNH" data-testid="cnh" required="true" labelCol={{ span: 24 }}>
             <InputMask value={formData ? formData.cnh : ""} name="cnh" onChange={(e) => handleInputChange(e, 'cnh')} className="ant-input ant-input-lg"
               mask="99999999999" maskPlaceholder=""
             />
@@ -158,7 +158,7 @@ export default function EditDriver(props) {
               </Col>
             </Row>
           </FormAntd.Item>
-          <FormAntd.Item label="CPF" required="true" labelCol={{ span: 24 }} >
+          <FormAntd.Item label="CPF" data-testid="cpf" required="true" labelCol={{ span: 24 }} >
             <InputMask value={formData ? formData.cpf : ""} name="cpf" onChange={(e) => handleInputChange(e, 'cpf')} className="ant-input ant-input-lg"
               mask="999.999.999-99" maskPlaceholder=""
             />

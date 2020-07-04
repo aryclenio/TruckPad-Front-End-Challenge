@@ -10,7 +10,7 @@ function Header() {
       <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
         <Menu.Item key="1">
           <a href="https://www.truckpad.com">
-            <img src={truckpad} alt="logo truckpad" style={{ "width": "125px" }} />
+            <img src={truckpad} alt="logo truckpad" style={{ "width": "180px" }} />
           </a>
         </Menu.Item>
       </Menu>
