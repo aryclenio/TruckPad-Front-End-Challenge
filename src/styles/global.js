@@ -14,7 +14,7 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-    background: #F6F6F6;  /* fallback for old browsers */
+    background: #FFF;  /* fallback for old browsers */
     -webkit-font-smoothing: antialiased;
     height: 100%;
   }

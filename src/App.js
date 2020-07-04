@@ -4,7 +4,7 @@ import Routes from './routes';
 import { Provider } from './AppContext'
 import GlobalStyle from './styles/global';
 import Header from './components/Header';
-
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -13,6 +13,7 @@ function App() {
         <Header />
         <GlobalStyle />
         <Routes />
+        <Footer />
       </BrowserRouter>
     </Provider>
   );

@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import ReactInputMask, { Props as InputProps } from 'react-input-mask';
+import ReactInputMask from 'react-input-mask';
 import { useField } from '@unform/core';
 
 export default function InputMask({ name, ...rest }) {

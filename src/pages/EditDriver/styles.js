@@ -20,6 +20,8 @@ export const Container = styled.div`
 export const FormContainer = styled.div`
   width: 50%;
   padding: 30px 60px;
+  overflow-y: scroll;
+  height:680px;
   @media (max-width: 768px) {
     width: 100%;
     padding: 10px 20px;

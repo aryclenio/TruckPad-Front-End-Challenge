@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { AppContext } from '../../AppContext'
-import { Container, TitleContainer, SearchContainer, ListContainer } from './styles'
+import { Container, TitleContainer, SearchContainer, ListContainer, NoDriverContainer } from './styles'
 import { Input, Button, Row, Col, Card, Badge } from 'antd';
 import { Link } from 'react-router-dom';
 import api from '../../services/api'
@@ -16,8 +16,10 @@ export default function DriverList() {
     });
   }
 
+  console.log(drivers);
+
   return (
-    <Container>
+    < Container >
       <TitleContainer>
         <h3>Motoristas Cadastrados</h3>
       </TitleContainer>
@@ -32,7 +34,7 @@ export default function DriverList() {
       <ListContainer>
         <div className="site-card-wrapper">
           <Row gutter={16}>
-            {drivers.map((driver) => (
+            {drivers.length ? drivers.map((driver) => (
               <Col md={24} lg={8}>
                 <Card title={driver.name}
                   extra={driver.active ?
@@ -44,10 +46,22 @@ export default function DriverList() {
                   <Link to={"/edit?id=" + driver.id}><Button className="btn-edit">Editar</Button></Link>
                 </Card>
               </Col>
-            ))}
+
+            ))
+              :
+              <NoDriverContainer>
+                <Col md={24}>
+                  <Card>
+                    Não há motoristas cadastrados em nossa base de dados. Verifique sua conexão com a internet ou cadastre um motorista.
+                </Card>
+
+                </Col>
+              </NoDriverContainer>
+            }
           </Row>
         </div>
       </ListContainer>
+
     </Container >
   )
 }

@@ -50,3 +50,12 @@ export const ListContainer = styled.div`
     }
   }
 `;
+
+export const NoDriverContainer = styled.div`
+    display: flex;
+    justify-content: center;
+  .ant-col {
+    display: flex;
+    justify-content: center;
+  }
+`;
