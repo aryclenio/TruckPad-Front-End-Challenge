@@ -1,15 +1,19 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext, useEffect, useRef } from 'react'
 import { AppContext } from '../../AppContext'
-import { Form, Button, Checkbox, Row, Col, Modal } from 'antd';
+import { Form as FormAntd, Button, Checkbox, Row, Col, Modal } from 'antd';
 import { Container, FormContainer, SessionTitle, ImageContainer } from './styles'
-import InputMask from "react-input-mask";
 import api from '../../services/api'
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { initialState } from '../../utils/initialState'
+import Input from '../../components/Input'
+import InputMask from '../../components/InputMask'
+import { Form } from '@unform/web';
+import * as Yup from 'yup'
 
 
 export default function EditDriver(props) {
+  const formRef = useRef(null);
   const [drivers] = useContext(AppContext);
   const [formData, setFormData] = useState(initialState);
 
@@ -43,11 +47,34 @@ export default function EditDriver(props) {
     setFormData(state);
   }
 
-  const handleSubmit = () => {
-    api.put("drivers/" + formData.id, formData).then((response) => {
-      ApiSuccess();
-      console.log(response.data);
-    });
+  const handleSubmit = async (data) => {
+    try {
+      // Remove all previous errors
+      formRef.current.setErrors({});
+      const schema = Yup.object().shape({
+        name: Yup.string().required("Insira um nome válido"),
+        phone: Yup.string().min(6).required("Insira um telefone de 11 digitos."),
+        birth: Yup.string().required("Insira uma data válida."),
+        cnh: Yup.string().min(11).required("Insira uma CNH válida com 11 digitos."),
+        cpf: Yup.string().min(11).required("Insira um CPF válido com 11 digitos."),
+      });
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+      api.put("drivers/" + formData.id, formData).then((response) => {
+        ApiSuccess();
+        console.log(response.data);
+      });
+      console.log(data);
+    } catch (err) {
+      const validationErrors = {};
+      if (err instanceof Yup.ValidationError) {
+        err.inner.forEach(error => {
+          validationErrors[error.path] = error.message;
+        });
+        formRef.current.setErrors(validationErrors);
+      }
+    }
   }
 
   console.log(formData);
@@ -67,29 +94,31 @@ export default function EditDriver(props) {
           wrapperCol={{ span: 14 }}
           layout="horizontal"
           size={'large'}
+          onSubmit={handleSubmit}
+          ref={formRef}
         >
-          <Form.Item label="Nome" labelCol={{ span: 24 }} rules={[{ required: true, message: 'Insira seu nome completo' }]}>
-            <input value={formData ? formData.name : ""} className="ant-input ant-input-lg" name="name" onChange={(e) => handleInputChange(e, 'name')} />
-          </Form.Item>
+          <FormAntd.Item label="Nome" required="true" labelCol={{ span: 24 }}>
+            <Input value={formData ? formData.name : ""} className="ant-input ant-input-lg" name="name" onChange={(e) => handleInputChange(e, 'name')} />
+          </FormAntd.Item>
 
-          <Form.Item label="Telefone" labelCol={{ span: 24 }} rules={[{ required: true, message: 'Insira um telefone válido.' }]}>
+          <FormAntd.Item label="Telefone" required="true" labelCol={{ span: 24 }}>
             <InputMask value={formData ? formData.phone : ""} name="phone" onChange={(e) => handleInputChange(e, 'phone')} className="ant-input ant-input-lg"
               mask="(99) 99999-9999" maskPlaceholder=""
             />
-          </Form.Item>
+          </FormAntd.Item>
 
-          <Form.Item label="Data de Nascimento" labelCol={{ span: 24 }} rules={[{ required: true, message: 'Insira uma data válida' }]}>
+          <FormAntd.Item label="Data de Nascimento" required="true" labelCol={{ span: 24 }} >
             <InputMask value={formData ? formData.birth : ""} name="birth" onChange={(e) => handleInputChange(e, 'birth')} className="ant-input ant-input-lg"
               mask="99/99/9999" maskPlaceholder=""
             />
-          </Form.Item>
+          </FormAntd.Item>
 
-          <Form.Item label="CNH" labelCol={{ span: 24 }} rules={[{ required: true, max: 11, message: 'Insira os 11 digitos da CNH corretamente.' }]}>
+          <FormAntd.Item label="CNH" required="true" labelCol={{ span: 24 }}>
             <InputMask value={formData ? formData.cnh : ""} name="cnh" onChange={(e) => handleInputChange(e, 'cnh')} className="ant-input ant-input-lg"
               mask="99999999999" maskPlaceholder=""
             />
-          </Form.Item>
-          <Form.Item label="Tipo de CNH" labelCol={{ span: 24 }} name="cnhType" rules={[{ required: true, message: 'Selecione ao menos um tipo de CNH.' }]}>
+          </FormAntd.Item>
+          <FormAntd.Item label="Tipo de CNH" labelCol={{ span: 24 }} name="cnhType">
             <Row>
               <Col span={8}>
                 <Checkbox checked={formData ? formData.cnhType.A : 1} value="A" onChange={(e) => handleInputChecked(e)} style={{ lineHeight: '32px' }} >
@@ -117,17 +146,17 @@ export default function EditDriver(props) {
               </Checkbox>
               </Col>
             </Row>
-          </Form.Item>
-          <Form.Item label="CPF" labelCol={{ span: 24 }} rules={[{ required: true, message: 'Insira um CPF válido.' }]}>
+          </FormAntd.Item>
+          <FormAntd.Item label="CPF" required="true" labelCol={{ span: 24 }} >
             <InputMask value={formData ? formData.cpf : ""} name="cpf" onChange={(e) => handleInputChange(e, 'cpf')} className="ant-input ant-input-lg"
               mask="999.999.999-99" maskPlaceholder=""
             />
-          </Form.Item>
-          <Form.Item className="button-container">
-            <Button type="primary" size={'large'} htmlType="submit" onClick={() => handleSubmit()}>
+          </FormAntd.Item>
+          <FormAntd.Item className="button-container">
+            <Button type="primary" size={'large'} htmlType="submit">
               Editar Motorista
-        </Button>
-          </Form.Item>
+            </Button>
+          </FormAntd.Item>
         </Form>
       </FormContainer>
     </Container>
