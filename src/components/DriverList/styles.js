@@ -28,9 +28,25 @@ export const TitleContainer = styled.div`
   }
 `;
 
-export const ListContainer = styled.div`
+export const SearchContainer = styled.div`
   margin: 20px 80px;
   @media (max-width: 768px) {
     margin: 20px 20px;
+  }
+`;
+
+export const ListContainer = styled.div`
+  margin: 20px 80px;
+  .ant-col {
+    margin-top: 20px;
+  }
+  .btn-edit {
+    
+  }
+  @media (max-width: 768px) {
+    margin: 20px 20px;
+    .ant-col {
+      width: 100%;
+    }
   }
 `;

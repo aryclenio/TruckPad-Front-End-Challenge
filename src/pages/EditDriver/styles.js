@@ -28,11 +28,10 @@ export const FormContainer = styled.div`
 
 export const ImageContainer = styled.div`
     width: 50%;
-    overflow: hidden;
-    background-size: cover;
-    background-position: center;
+    display: flex;
+    justify-content: center;
     @media (max-width: 768px) {
-      display: none;
+        display: none;
     } 
 `;
 

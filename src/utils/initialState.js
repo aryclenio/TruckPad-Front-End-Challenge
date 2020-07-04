@@ -1,4 +1,5 @@
 export const initialState = {
+  "active": true,
   "name": "",
   "phone": "",
   "birth": "",

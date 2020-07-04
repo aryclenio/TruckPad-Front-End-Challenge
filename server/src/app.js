@@ -9,12 +9,16 @@ app.use(cors());
 const drivers = [];
 
 app.get("/drivers", (req, res) => {
-  return res.send(drivers);
+  const { name } = req.query;
+  const results = name
+    ? drivers.filter((driver) => driver.name.includes(name))
+    : drivers;
+  return res.send(results);
 });
 
 app.post("/drivers", (req, res) => {
-  const { name, phone, birth, cnh, cnhType, cpf } = req.body;
-  const driver = { id: uuid(), name, phone, birth, cnh, cnhType, cpf };
+  const { active, name, phone, birth, cnh, cnhType, cpf } = req.body;
+  const driver = { id: uuid(), active, name, phone, birth, cnh, cnhType, cpf };
   drivers.push(driver);
 
   return res.json(driver);
@@ -22,7 +26,7 @@ app.post("/drivers", (req, res) => {
 
 app.put("/drivers/:id", (req, res) => {
   const { id } = req.params;
-  const { name, phone, birth, cnh, cnhType, cpf } = req.body;
+  const { active, name, phone, birth, cnh, cnhType, cpf } = req.body;
   const driverIndex = drivers.findIndex((driver) => driver.id === id);
 
   if (driverIndex < 0) {
@@ -30,6 +34,7 @@ app.put("/drivers/:id", (req, res) => {
   }
   const driver = {
     id,
+    active,
     name,
     phone,
     birth,

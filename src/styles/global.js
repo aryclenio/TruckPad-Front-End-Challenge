@@ -37,7 +37,6 @@ export default createGlobalStyle`
     background-color: #face48 !important;
     color: #000 !important;
     font-weight: bold;
-    font-size: 20px;
     &:hover {
       background-color: ${darken(0.09, '#face48')} !important;
       color: #000 !important;

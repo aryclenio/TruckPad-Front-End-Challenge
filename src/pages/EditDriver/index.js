@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect, useRef } from 'react'
 import { AppContext } from '../../AppContext'
-import { Form as FormAntd, Button, Checkbox, Row, Col, Modal } from 'antd';
+import { Form as FormAntd, Button, Checkbox, Row, Col, Modal, Switch } from 'antd';
 import { Container, FormContainer, SessionTitle, ImageContainer } from './styles'
 import api from '../../services/api'
 import { FaArrowLeft } from "react-icons/fa";
@@ -10,6 +10,7 @@ import Input from '../../components/Input'
 import InputMask from '../../components/InputMask'
 import { Form } from '@unform/web';
 import * as Yup from 'yup'
+import create from '../../assets/img/create.svg'
 
 
 export default function EditDriver(props) {
@@ -47,6 +48,12 @@ export default function EditDriver(props) {
     setFormData(state);
   }
 
+  const handleActive = (e) => {
+    let state = { ...formData }
+    state.active = !state.active;
+    setFormData(state);
+  }
+
   const handleSubmit = async (data) => {
     try {
       // Remove all previous errors
@@ -81,7 +88,7 @@ export default function EditDriver(props) {
   return (
     <Container>
       <ImageContainer>
-        {/** <img alt="truck on road" src={truck} />**/}
+        <img alt="truck on road" src={create} />
       </ImageContainer>
       <FormContainer>
         <SessionTitle>
@@ -97,6 +104,10 @@ export default function EditDriver(props) {
           onSubmit={handleSubmit}
           ref={formRef}
         >
+          <FormAntd.Item label="Status do motorista" required="true" labelCol={{ span: 24 }}>
+            <Switch defaultChecked checked={formData ? formData.active : true} onChange={handleActive} checkedChildren="Ativo" unCheckedChildren="Inativo" />
+          </FormAntd.Item>
+
           <FormAntd.Item label="Nome" required="true" labelCol={{ span: 24 }}>
             <Input value={formData ? formData.name : ""} className="ant-input ant-input-lg" name="name" onChange={(e) => handleInputChange(e, 'name')} />
           </FormAntd.Item>
