@@ -6,6 +6,20 @@ Truckpad Driver is software designed to register drivers from all over Brazil. W
 
 ---
 
+## Register drivers at any time
+
+With Truckpad Driver, you can create and edit any driver that are currently with an official CNH from Brazil. The screens offer precise form validation and a fast communication with our server, so you can do your job with full speed.
+
+- Create Driver Page
+
+![Create driver page](https://user-images.githubusercontent.com/31252524/86538725-1b5f6b00-bece-11ea-80d2-e0ad10c4c25f.png)
+
+---
+
+- Edit Driver Page
+
+![Edit driver](https://user-images.githubusercontent.com/31252524/86538817-bc4e2600-bece-11ea-9c3b-35f4054a288d.png)
+
 ## Project structure
 
 ```
@@ -40,10 +54,14 @@ Truckpad Driver is software designed to register drivers from all over Brazil. W
 - Cypress
 - NodeJS
 
+---
+
 ## Tecnologies required
 
 - NodeJS 10 or above
 - Yarn package mannager
+
+---
 
 ## Before use
 
@@ -65,6 +83,8 @@ If everything works, you can see this message in terminal.
 
 ![image](https://user-images.githubusercontent.com/31252524/86534971-5b652480-beb3-11ea-98d3-4026a4bd9bfc.png)
 
+---
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -82,11 +102,15 @@ yarn test
 
 Launches the test runner in `cypress/integration` folder with cypress to watch end to end specs.
 
+**ALERT!** Before start this script, make sure your project is running (_this includes the front application and the server_)
+
 ```console
 yarn build
 ```
 
 Builds the app for production to the `build` folder.<br />
+
+---
 
 ### Colaborators
 

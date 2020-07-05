@@ -87,4 +87,11 @@ export default createGlobalStyle`
     background-color: #face48;
     border-color: #face48;
   }
+
+  .ant-layout-header {
+    padding: 0px 44px;
+    @media (max-width: 768px) {
+      padding: 0 2px;
+    }
+  }
 `;
