@@ -102,7 +102,7 @@ yarn test
 
 Launches the test runner in `cypress/integration` folder with cypress to watch end to end specs.
 
-**ALERT!** Before start this script, make sure your project is running (_this includes the front application and the server_)
+**ALERT!** Before start this script, stop the server and run it again and make sure your web project is running (_this includes the front application and the server_).
 
 ```console
 yarn cypress

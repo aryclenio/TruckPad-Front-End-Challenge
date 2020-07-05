@@ -185,7 +185,7 @@ export default function EditDriver(props) {
           </FormAntd.Item>
           <FormAntd.Item className="button-container">
             <Button type="primary" size={'large'} htmlType="submit">
-              Editar Motorista
+              Salvar
             </Button>
           </FormAntd.Item>
         </Form>

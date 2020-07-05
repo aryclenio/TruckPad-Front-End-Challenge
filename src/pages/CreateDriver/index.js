@@ -170,7 +170,7 @@ export default function CreateDriver() {
           </FormAntd.Item>
           <FormAntd.Item className="button-container">
             <Button type="primary" size={'large'} htmlType="submit">
-              Cadastrar Motorista
+              Cadastrar
             </Button>
           </FormAntd.Item>
         </Form>
