@@ -2,7 +2,7 @@
 
 Truckpad Driver is software designed to register drivers from all over Brazil. With it, it is possible to register a driver and their respective data such as CNH and CPF. The system allows data editing, as well as the activation or inactivation of a driver already registered in the system. All of this in the palm of your hand, being fully adjustable to your mobile screen.
 
-![image](https://user-images.githubusercontent.com/31252524/86535149-87cd7080-beb4-11ea-85c7-9807aafc85c2.png)
+![image](https://user-images.githubusercontent.com/31252524/86535225-2bb71c00-beb5-11ea-84af-e1a83116cda6.png)
 
 ---
 
