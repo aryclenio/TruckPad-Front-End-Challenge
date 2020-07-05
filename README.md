@@ -108,7 +108,7 @@ Launches the test runner in `cypress/integration` folder with cypress to watch e
 yarn cypress
 ```
 
-Launches the test runner in `cypress/integration` folder with cypress in an Google Chromium instance, so you can see the tests running live. The same **ALERT** from the script above remains for tris script.
+Launches the test runner in `cypress/integration` folder with cypress in an Google Chromium instance, so you can see the tests running live. The same **ALERT** from the script above remains for this script.
 
 ```console
 yarn build
