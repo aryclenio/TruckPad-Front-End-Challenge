@@ -44,7 +44,6 @@ export default function EditDriver(props) {
   const handleInputChecked = (e) => {
     let state = { ...formData }
     state.cnhType[e.target.value] = !state.cnhType[e.target.value];
-    console.log(e.target.checked)
     setFormData(state);
   }
 
@@ -56,7 +55,6 @@ export default function EditDriver(props) {
 
   const handleSubmit = async (data) => {
     try {
-      // Remove all previous errors
       formRef.current.setErrors({});
       const schema = Yup.object().shape({
         name: Yup.string().required("Insira um nome válido"),
@@ -68,11 +66,17 @@ export default function EditDriver(props) {
       await schema.validate(data, {
         abortEarly: false,
       });
-      api.put("drivers/" + formData.id, formData).then((response) => {
-        ApiSuccess();
-        console.log(response.data);
-      });
-      console.log(data);
+      api.put("drivers/" + formData.id, formData)
+        .then((response) => {
+          ApiSuccess();
+        })
+        .catch(error => {
+          Modal.error({
+            title: 'Falha na comunicação com o servidor',
+            content: 'Verifique sua conexão com a internet e tente novamente.',
+            onOk() { window.location.href = "/" },
+          });
+        });
     } catch (err) {
       const validationErrors = {};
       if (err instanceof Yup.ValidationError) {
@@ -84,7 +88,6 @@ export default function EditDriver(props) {
     }
   }
 
-  console.log(formData);
   return (
     <Container>
       <FormContainer>
@@ -101,6 +104,7 @@ export default function EditDriver(props) {
           onSubmit={handleSubmit}
           ref={formRef}
         >
+          <h3 style={{ color: '#face48', fontWeight: '400', marginTop: '10px' }}>Campos obrigatórios *</h3>
           <FormAntd.Item className="driver-switch" label="Status do motorista" data-testid="active" required="true" labelCol={{ span: 24 }}>
             <Switch defaultChecked checked={formData ? formData.active : true} onChange={handleActive} />
             <h3 style={{ marginBottom: 0 }}>{formData ? formData.active ? " Ativo" : " Inativo" : ""}</h3>

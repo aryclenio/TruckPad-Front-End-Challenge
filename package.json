@@ -31,6 +31,7 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "cypress run",
+    "cypress": "cypress open",
     "eject": "react-app-rewired eject"
   },
   "eslintConfig": {

@@ -18,8 +18,6 @@ export default function DriverList() {
   }
 
 
-  console.log(drivers);
-
   return (
     < Container >
       <TitleContainer>

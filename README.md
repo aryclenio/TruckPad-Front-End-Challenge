@@ -105,6 +105,12 @@ Launches the test runner in `cypress/integration` folder with cypress to watch e
 **ALERT!** Before start this script, make sure your project is running (_this includes the front application and the server_)
 
 ```console
+yarn cypress
+```
+
+Launches the test runner in `cypress/integration` folder with cypress in an Google Chromium instance, so you can see the tests running live. The same **ALERT** from the script above remains for tris script.
+
+```console
 yarn build
 ```
 

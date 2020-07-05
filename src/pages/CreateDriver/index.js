@@ -28,7 +28,6 @@ export default function CreateDriver() {
     let state = { ...formData }
     state[name] = e.target.value;
     setFormData(state);
-    console.log(formData)
   }
 
   const handleActive = (e) => {
@@ -40,7 +39,6 @@ export default function CreateDriver() {
   const handleInputChecked = (e) => {
     let state = { ...formData }
     state.cnhType[e.target.value] = !state.cnhType[e.target.value];
-    console.log(e.target.checked)
     setFormData(state);
   }
 
@@ -58,10 +56,17 @@ export default function CreateDriver() {
       await schema.validate(data, {
         abortEarly: false,
       });
-      api.post("drivers", formData).then((response) => {
-        ApiSuccess();
-        console.log(response.data);
-      });
+      api.post("drivers", formData)
+        .then((response) => {
+          ApiSuccess();
+        })
+        .catch(error => {
+          Modal.error({
+            title: 'Falha na comunicação com o servidor',
+            content: 'Verifique sua conexão com a internet e tente novamente.',
+            onOk() { window.location.href = "/" },
+          });
+        });
     } catch (err) {
       const validationErrors = {};
       if (err instanceof Yup.ValidationError) {
@@ -72,7 +77,7 @@ export default function CreateDriver() {
       }
     }
   }
-  console.log(formData);
+
   return (
     <Container>
       <FormContainer>
@@ -89,6 +94,7 @@ export default function CreateDriver() {
           onSubmit={handleSubmit}
           ref={formRef}
         >
+          <h3 style={{ color: '#face48', fontWeight: '400', marginTop: '10px' }}>Campos obrigatórios *</h3>
           <FormAntd.Item className="driver-switch" label="Status do motorista" data-testid="active" required="true" labelCol={{ span: 24 }}>
             <Switch defaultChecked checked={formData ? formData.active : true} onChange={handleActive} />
             <h3 style={{ marginBottom: 0 }}>{formData ? formData.active ? " Ativo" : " Inativo" : ""}</h3>
