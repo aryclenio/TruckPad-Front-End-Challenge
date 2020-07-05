@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { Form as FormAntd, Button, Checkbox, Row, Col, Modal } from 'antd';
+import { Form as FormAntd, Button, Checkbox, Row, Col, Modal, Switch } from 'antd';
 import { Container, FormContainer, SessionTitle, ImageContainer } from './styles'
 import api from '../../services/api'
 import { FaArrowLeft } from "react-icons/fa";
@@ -29,6 +29,12 @@ export default function CreateDriver() {
     state[name] = e.target.value;
     setFormData(state);
     console.log(formData)
+  }
+
+  const handleActive = (e) => {
+    let state = { ...formData }
+    state.active = !state.active;
+    setFormData(state);
   }
 
   const handleInputChecked = (e) => {
@@ -69,12 +75,9 @@ export default function CreateDriver() {
   console.log(formData);
   return (
     <Container>
-      <ImageContainer>
-        <img alt="truck on road" src={create} />
-      </ImageContainer>
       <FormContainer>
         <SessionTitle>
-          <Link to="/"><Button type="primary" icon={<FaArrowLeft />} size={'middle'} /></Link>
+          <Link to="/"><Button type="primary" icon={<FaArrowLeft size={14} />} size={'middle'} /></Link>
           Cadastro de motoristas
         </SessionTitle>
 
@@ -86,6 +89,10 @@ export default function CreateDriver() {
           onSubmit={handleSubmit}
           ref={formRef}
         >
+          <FormAntd.Item className="driver-switch" label="Status do motorista" data-testid="active" required="true" labelCol={{ span: 24 }}>
+            <Switch defaultChecked checked={formData ? formData.active : true} onChange={handleActive} />
+            <h3 style={{ marginBottom: 0 }}>{formData ? formData.active ? " Ativo" : " Inativo" : ""}</h3>
+          </FormAntd.Item>
           <FormAntd.Item label="Nome" data-testid="name" required="true" labelCol={{ span: 24 }} >
             <Input name="name" onChange={(e) => handleInputChange(e, 'name')} className="ant-input ant-input-lg" />
           </FormAntd.Item>
@@ -145,6 +152,10 @@ export default function CreateDriver() {
           </FormAntd.Item>
         </Form>
       </FormContainer>
+      <ImageContainer>
+        <img alt="truck on road" src={create} />
+      </ImageContainer>
+
     </Container>
   )
 }

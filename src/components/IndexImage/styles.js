@@ -15,7 +15,7 @@ export const Container = styled.div`
 `;
 
 export const TitleContainer = styled.div`
-    font-size: 125px;
+    font-size: 5rem;
     font-weight: bold;
     color: #fff;
     margin-bottom: 20px;
@@ -26,7 +26,7 @@ export const TitleContainer = styled.div`
 `;
 
 export const SubtitleContainer = styled.div`
-    font-size: 50px;
+    font-size: 2rem;
     font-weight: 400;
     color: #fff;
     margin: 0 22%;

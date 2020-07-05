@@ -10,7 +10,7 @@ import Input from '../../components/Input'
 import InputMask from '../../components/InputMask'
 import { Form } from '@unform/web';
 import * as Yup from 'yup'
-import create from '../../assets/img/create.svg'
+import edit from '../../assets/img/edit.svg'
 
 
 export default function EditDriver(props) {
@@ -87,12 +87,9 @@ export default function EditDriver(props) {
   console.log(formData);
   return (
     <Container>
-      <ImageContainer>
-        <img alt="truck on road" src={create} />
-      </ImageContainer>
       <FormContainer>
         <SessionTitle>
-          <Link to="/"><Button type="primary" icon={<FaArrowLeft />} size={'middle'} /></Link>
+          <Link to="/"><Button type="primary" icon={<FaArrowLeft size={14} />} size={'middle'} /></Link>
           Editando motorista
         </SessionTitle>
 
@@ -104,8 +101,9 @@ export default function EditDriver(props) {
           onSubmit={handleSubmit}
           ref={formRef}
         >
-          <FormAntd.Item label="Status do motorista" data-testid="active" required="true" labelCol={{ span: 24 }}>
-            <Switch defaultChecked checked={formData ? formData.active : true} onChange={handleActive} checkedChildren="Ativo" unCheckedChildren="Inativo" />
+          <FormAntd.Item className="driver-switch" label="Status do motorista" data-testid="active" required="true" labelCol={{ span: 24 }}>
+            <Switch defaultChecked checked={formData ? formData.active : true} onChange={handleActive} />
+            <h3 style={{ marginBottom: 0 }}>{formData ? formData.active ? " Ativo" : " Inativo" : ""}</h3>
           </FormAntd.Item>
 
           <FormAntd.Item label="Nome" data-testid="name" required="true" labelCol={{ span: 24 }}>
@@ -170,6 +168,10 @@ export default function EditDriver(props) {
           </FormAntd.Item>
         </Form>
       </FormContainer>
+      <ImageContainer>
+        <img alt="truck on road" src={edit} />
+      </ImageContainer>
+
     </Container>
   )
 }

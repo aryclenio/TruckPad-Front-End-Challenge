@@ -6,10 +6,10 @@ export const Container = styled.div`
 
   @media (max-width: 768px) {
     .ant-form-item {
-      margin-bottom: 0;
+      margin: 20px 0 0 0;
     }
     .button-container {
-      margin-top: 20px;
+      margin: 20px 0;
       button {
         width: 100%;
       }

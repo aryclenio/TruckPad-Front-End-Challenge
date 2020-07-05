@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { AppContext } from '../../AppContext'
 import { Container, TitleContainer, SearchContainer, ListContainer, ButtonContainer, NoDriverContainer, ImageContainer } from './styles'
 import { Input, Button, Row, Col, Card, Badge } from 'antd';
-import image from '../../assets/img/create.svg'
+import image from '../../assets/img/list.svg'
 import { Link } from 'react-router-dom';
 import api from '../../services/api'
 
