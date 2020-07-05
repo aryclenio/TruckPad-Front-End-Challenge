@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
-  height: 44rem;
+  height: 100vh;
   overflow: hidden;
   background-size: cover;
   background-position: center;
@@ -12,9 +12,6 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
 
-  @media (max-width: 768px) {
-    height: 30rem;
-  }
 `;
 
 export const TitleContainer = styled.div`
@@ -30,24 +27,30 @@ export const TitleContainer = styled.div`
 
 export const SubtitleContainer = styled.div`
     font-size: 50px;
-    font-weight: bold;
+    font-weight: 400;
     color: #fff;
     margin: 0 22%;
     text-align: center;
 
     @media (max-width: 768px) {
-      font-size: 16px;
+      font-size: 20px;
+      margin: 0 20%;
     }
 `;
 
 export const ScrollContainer = styled.div`
-    margin-top: 80px;
-    font-size: 16px;
-    font-weight: bold;
+    position: absolute;
+    bottom: 20px;
     color: #fff;
     text-align: center;
+    img {
+      width: 100px;
+    }
 
     @media (max-width: 768px) {
       font-size: 16px;
+      img {
+        width: 70px;
+      }
     }
 `;

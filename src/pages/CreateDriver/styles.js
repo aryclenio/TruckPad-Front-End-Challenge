@@ -40,6 +40,9 @@ export const SessionTitle = styled.div`
   font-weight: bold;
   display: flex;
   align-items: center;
+  a {
+    display: flex;
+  }
   button {
     margin-right: 10px;
   }

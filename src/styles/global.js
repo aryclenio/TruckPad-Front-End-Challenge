@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'antd/dist/antd.css';
 
 export default createGlobalStyle`
+
   html {
     height: 100%;
   }
