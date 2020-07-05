@@ -17,7 +17,6 @@ export default function DriverList() {
     });
   }
 
-
   return (
     < Container >
       <TitleContainer>

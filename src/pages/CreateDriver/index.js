@@ -10,6 +10,7 @@ import * as Yup from 'yup'
 import Input from '../../components/Input'
 import InputMask from '../../components/InputMask'
 import create from '../../assets/img/create.svg'
+import { validateCnhType } from '../../utils/functions'
 
 
 export default function CreateDriver() {
@@ -21,6 +22,22 @@ export default function CreateDriver() {
       title: 'Usuário cadastrado com sucesso',
       content: 'Você será levado de volta a página inicial.',
       onOk() { window.location.href = "/" },
+    });
+  }
+
+  const ApiFailure = () => {
+    Modal.error({
+      title: 'Falha na comunicação com o servidor',
+      content: 'Verifique sua conexão com a internet e tente novamente.',
+      onOk() { window.location.href = "/" },
+    });
+  }
+
+  const checkFailure = () => {
+    Modal.error({
+      title: 'Erro no cadastro',
+      content: 'O motorista deve ter ao menos um tipo de CNH.',
+      onOk() { },
     });
   }
 
@@ -56,17 +73,17 @@ export default function CreateDriver() {
       await schema.validate(data, {
         abortEarly: false,
       });
-      api.post("drivers", formData)
-        .then((response) => {
-          ApiSuccess();
-        })
-        .catch(error => {
-          Modal.error({
-            title: 'Falha na comunicação com o servidor',
-            content: 'Verifique sua conexão com a internet e tente novamente.',
-            onOk() { window.location.href = "/" },
+      if (!validateCnhType(formData.cnhType)) {
+        api.post("drivers", formData)
+          .then((response) => {
+            ApiSuccess();
+          })
+          .catch(error => {
+            ApiFailure();
           });
-        });
+      } else {
+        checkFailure();
+      }
     } catch (err) {
       const validationErrors = {};
       if (err instanceof Yup.ValidationError) {

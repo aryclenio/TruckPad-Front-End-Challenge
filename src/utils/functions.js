@@ -9,3 +9,7 @@ export function SortBy(property) {
     return result * order;
   }
 }
+
+export function validateCnhType(obj) {
+  return Object.keys(obj).every((k) => !obj[k])
+}

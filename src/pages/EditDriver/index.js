@@ -11,6 +11,8 @@ import InputMask from '../../components/InputMask'
 import { Form } from '@unform/web';
 import * as Yup from 'yup'
 import edit from '../../assets/img/edit.svg'
+import { validateCnhType } from '../../utils/functions'
+
 
 
 export default function EditDriver(props) {
@@ -32,6 +34,22 @@ export default function EditDriver(props) {
       title: 'Usuário editado com sucesso',
       content: 'Você será levado de volta a página inicial.',
       onOk() { window.location.href = "/" },
+    });
+  }
+
+  const ApiFailure = () => {
+    Modal.error({
+      title: 'Falha na comunicação com o servidor',
+      content: 'Verifique sua conexão com a internet e tente novamente.',
+      onOk() { window.location.href = "/" },
+    });
+  }
+
+  const checkFailure = () => {
+    Modal.error({
+      title: 'Erro na edição',
+      content: 'O motorista deve ter ao menos um tipo de CNH.',
+      onOk() { },
     });
   }
 
@@ -66,17 +84,17 @@ export default function EditDriver(props) {
       await schema.validate(data, {
         abortEarly: false,
       });
-      api.put("drivers/" + formData.id, formData)
-        .then((response) => {
-          ApiSuccess();
-        })
-        .catch(error => {
-          Modal.error({
-            title: 'Falha na comunicação com o servidor',
-            content: 'Verifique sua conexão com a internet e tente novamente.',
-            onOk() { window.location.href = "/" },
+      if (!validateCnhType(formData.cnhType)) {
+        api.put("drivers/" + formData.id, formData)
+          .then((response) => {
+            ApiSuccess();
+          })
+          .catch(error => {
+            ApiFailure();
           });
-        });
+      } else {
+        checkFailure();
+      }
     } catch (err) {
       const validationErrors = {};
       if (err instanceof Yup.ValidationError) {
